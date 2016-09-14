@@ -1,14 +1,5 @@
 Recipes = new Mongo.Collection('recipes');
 
-Recipes.allow({
-	insert: function(userId, doc){
-		return !!userId;
-	},
-	update:  function(userId, doc){
-		return !!userId;
-	}
-});
-
 
 Ingredient = new SimpleSchema({
 	name: {
@@ -19,60 +10,74 @@ Ingredient = new SimpleSchema({
 	}
 });
 
-
 RecipeSchema = new SimpleSchema({
 	name: {
 		type: String,
-		label: "Name"
+		label: 'Name'
 	},
 	description: {
 		type: String,
-		label: "Description"
+		label: 'Description'
 	},
 	ingredients: {
 		type: [Ingredient]
 
+	},
+	preparation :{
+		type: String
 	},
 	inMenu: {
 		type: Boolean,
 		defaultValue: false,
 		optional: true,
 		autoform: {
-			type: "hidden"
+			type: 'hidden'
 		}
 	},
 	author: {
 		type: String,
-		label: "Author",
+		label: 'Author',
 		autoValue: function(){
 			return this.userId
 		},
 		autoform: {
-			type: "hidden"
+			type: 'hidden'
 		}
 	},
 	createdAt: {
 		type: Date,
-		label: "Created At",
+		label: 'Created At',
 		autoValue: function(){
 			return new Date()
 		},
 		autoform: {
-			type: "hidden"
+			type: 'hidden'
 		}
 	}
 });
 
+Recipes.attachSchema(RecipeSchema);
+
 
 Meteor.methods({
-	toggleMenuItem: function(id, currentState) {
+	toggleMenuItem: function(id, currentState){
 		Recipes.update(id, {
 			$set: {
 				inMenu: !currentState
 			}
 		});
+	},
+	deleteRecipe: function(id){
+		Recipes.remove(id);
 	}
 });
 
 
-Recipes.attachSchema(RecipeSchema);
+Recipes.allow({
+	insert: function(userId, doc){
+		return !!userId;
+	},
+	update:  function(userId, doc){
+		return !!userId;
+	}
+});

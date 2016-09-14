@@ -1,0 +1,15 @@
+<template name="Menu">
+	<button><a href="/recipe-book" style="color:white"> Add recipes </a></button>
+	<button class="suggest-recipe">Suggest recipes</button>
+		{{#each recipes}}
+			{{> MenuItem}}
+		{{/each}}
+</template>
+
+
+<template name="MenuItem">
+	<div class="menu-item">
+		<h3>{{name}}</h3>
+		<p>{{description}}</p>		
+	</div>
+</template>

@@ -1,0 +1,33 @@
+<template name="IngredientsHome">
+	{{#if $.Session.get 'newIngredientHome'}}
+		<div class="new-recipe-container">
+			{{> quickForm collection="IngredientsHome" id="ingredientHomeId" type="insert" class="new-recipe-form"}}
+			<i class="fa fa-close"></i>
+		</div>
+	{{else}}	
+		<button class="new-recipe">Add Ingredient</button>
+	{{/if}}
+	<section class="recipes">
+		{{# if Template.subscriptionsReady}}
+			{{#each ingredientsHomeList}}
+				<ul class="ingredients-home">
+					{{> SingleIngredientHome}}
+				</ul>
+			{{else}}
+				<p>Add the ingredients that you have in your home</p>
+			{{/each}}
+		{{else}}
+			<p>Loading</p>
+		{{/if}}
+	</section>
+</template>
+
+
+<template name='SingleIngredientHome'>
+	{{# if editMode}}
+		{{> quickForm collection="IngredientsHome" id=ingredientHomeId type="update" doc=this autosave=true}}
+	{{else}}
+		<li>{{name}} - <span class="amount">{{amount}}</span></li>
+	{{/if}}
+	<i class="fa fa-trash"></i><i class="fa fa-pencil"></i>
+</template>

@@ -316,17 +316,13 @@ input, select, textarea
     z-index 1
     shadow-level(1)
     trans()
-    .remove-from-menu
-        display none
+    .btn-primary, .btn-deny
+        display block
     &.in-menu
         background teal
         color #FFF
         h3
             border-bottom: rgba(255,255,255, 0.6) solid 3px
-        .add-to-menu
-            display none
-        .remove-from-menu  
-            display block
     h3
         font-size: 3em;
         opacity: 0.3;
@@ -335,7 +331,7 @@ input, select, textarea
         margin-bottom 10px
     button
         margin-top 20px
-    .fa-trash
+    .fa-trash, .fa-pencil
         opacity 0.3
         cursor pointer
         position absolute
@@ -349,6 +345,10 @@ input, select, textarea
         &:hover
             color red
             opacity 0.6
+    .fa-pencil
+        right 40px
+        &:hover
+            color purp
     .ingredient
         display inline-block
         margin-right 10px
@@ -378,7 +378,7 @@ input, select, textarea
     padding 50px 5%
     list-style none
     li
-        font-size 2em
+        font-size 1.5em
         padding 20px
         border-bottom 1px solid light-grey
         border-top 1px solid light-grey
@@ -391,3 +391,25 @@ input, select, textarea
         left auto
         a
             color dark-purp
+
+.ingredients-home
+    @extend .shopping-list
+    .fa-trash, .fa-pencil
+        opacity 0.3
+        cursor pointer
+        position relative
+        float right
+        top 0
+        left 40px
+        font-size 1.0em  
+        display block
+        padding 20px
+        color black
+        trans()
+        &:hover
+            color red
+            opacity 0.6
+    .fa-pencil
+        left 60px
+        &:hover
+            color purp          

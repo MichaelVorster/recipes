@@ -70,3 +70,11 @@ FlowRouter.route('/ingredients-home', {
 		BlazeLayout.render('MainLayout', {main: 'IngredientsHome'});
 	}
 });
+
+FlowRouter.route('/suggested-recipes', {
+	name: 'suggested-recipes', 
+	action() {
+		GAnalytics.pageview();
+		BlazeLayout.render('MainLayout', {main: 'SuggestedRecipes'});
+	}
+});

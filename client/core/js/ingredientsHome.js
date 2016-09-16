@@ -5,11 +5,13 @@ Template.IngredientsHome.onCreated(function(){
 	});
 });
 
+
 Template.IngredientsHome.helpers({
 	ingredientsHomeList: function (){
 		return IngredientsHome.find({});
 	}
 });
+
 
 Template.IngredientsHome.events({
 	'click .new-recipe': ()=> {
@@ -25,6 +27,7 @@ Template.SingleIngredientHome.onCreated(function() {
 	this.editMode = new ReactiveVar(false);
 });
 
+
 Template.SingleIngredientHome.helpers({
 	ingredientHomeId: function() {
 		return this._id;
@@ -33,6 +36,7 @@ Template.SingleIngredientHome.helpers({
 		return Template.instance().editMode.get();
 	}
 });
+
 
 Template.SingleIngredientHome.events({
 	'click .fa-trash': function() {

@@ -3,10 +3,12 @@ Template.ShoppingList.onCreated(function(){
 	self.autorun(function() {
 		self.subscribe('recipes');
 	});
+	var update = 'in menu';
+	Meteor.call('updateMissingIngredients', update);
 });
 
 Template.ShoppingList.helpers({
-	shoppingList: ()=> {
+	shoppingList: function(){
 		return Recipes.find({inMenu: true});
 	}
 });

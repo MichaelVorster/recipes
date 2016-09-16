@@ -37,3 +37,8 @@ meteortoys:allthings
 datariot:ganalytics
 
 check
+universe:modules
+
+practicalmeteor:mocha
+xolvio:cleaner
+dburles:factory

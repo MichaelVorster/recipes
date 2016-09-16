@@ -1,4 +1,5 @@
 <template name="IngredientsHome">
+	<h2>Add the ingredients that you have in your home</h2>
 	{{#if $.Session.get 'newIngredientHome'}}
 		<div class="new-recipe-container">
 			{{> quickForm collection="IngredientsHome" id="ingredientHomeId" type="insert" class="new-recipe-form"}}
@@ -13,8 +14,6 @@
 				<ul class="ingredients-home">
 					{{> SingleIngredientHome}}
 				</ul>
-			{{else}}
-				<p>Add the ingredients that you have in your home</p>
 			{{/each}}
 		{{else}}
 			<p>Loading</p>

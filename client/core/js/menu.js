@@ -7,13 +7,6 @@ Template.Menu.onCreated(function(){
 });
 
 
-Template.Menu.events({
-	'click .suggest-recipe': function(){
-		Meteor.call('suggestRecipes');
-	}
-})
-
-
 Template.Menu.helpers({
 	recipes: function(){
 		return Recipes.find({inMenu: true});

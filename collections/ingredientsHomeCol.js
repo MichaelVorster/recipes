@@ -1,10 +1,25 @@
 IngredientsHome = new Mongo.Collection('ingredientsHome');
 
 
+IngredientsHome.allow({
+	insert: function(userId, doc){
+		return !!userId;
+	},
+	update:  function(userId, doc){
+		return !!userId;
+	}
+})
+
+
 IngredientsHomeSchema = new SimpleSchema({
 	name: {
 		type: String,
-		label: 'Ingredient'
+		label: 'Ingredient',
+  		autoValue: function () {
+    		if (this.isSet && typeof this.value === 'string'){
+      			return this.value.toLowerCase();
+      		}
+      	}
 	},
 	amount: {
 		type: String
@@ -24,18 +39,3 @@ IngredientsHomeSchema = new SimpleSchema({
 IngredientsHome.attachSchema(IngredientsHomeSchema);
 
 
-Meteor.methods({
-	deleteIngredientHome: function(id){
-		IngredientsHome.remove(id);
-	}
-});
-
-
-IngredientsHome.allow({
-	insert: function(userId, doc){
-		return !!userId;
-	},
-	update:  function(userId, doc){
-		return !!userId;
-	}
-})

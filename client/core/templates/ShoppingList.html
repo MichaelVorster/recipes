@@ -2,8 +2,10 @@
 	<h1 class="page-title">My Shopping List</h1>
 	<ul class="shopping-list">
 		{{#each shoppingList}}
-			{{#each ingredients}}
+			{{#each missingIngredients}}
 				<li>{{name}} - <span class="amount">{{amount}}</span></li>
+			{{else}}
+				<li>No ingredients needed for planned menu</li>
 			{{/each}}
 		{{else}}
 			<li>Add <a href="/recipe-book">recipes</a> to your menu</li>

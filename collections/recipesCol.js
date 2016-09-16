@@ -1,9 +1,24 @@
 Recipes = new Mongo.Collection('recipes');
 
 
+Recipes.allow({
+	insert: function(userId, doc){
+		return !!userId;
+	},
+	update:  function(userId, doc){
+		return !!userId;
+	}
+});
+
+
 Ingredient = new SimpleSchema({
 	name: {
-		type: String
+		type: String,
+  		autoValue: function () {
+    		if (this.isSet && typeof this.value === 'string'){
+      			return this.value.toLowerCase();
+      		}	
+      	}
 	},
 	amount: {
 		type: String
@@ -25,6 +40,32 @@ RecipeSchema = new SimpleSchema({
 	},
 	preparation :{
 		type: String
+	},
+	serves: {
+		type: Number,
+		optional: true
+	},
+	rating: {
+		type: Number,
+		defaultValue: 0,
+		optional: true,
+		autoform: {
+			type: 'hidden'
+		}
+	},
+	missingIngredients: {
+		type: [Ingredient],
+		optional: true,
+		autoform: {
+			type: 'hidden'
+		}
+	},
+	numMissingIngredients: {
+		type: Number,
+		defaultValue: 0,
+		autoform: {
+			type: 'hidden'
+		}
 	},
 	inMenu: {
 		type: Boolean,
@@ -57,27 +98,3 @@ RecipeSchema = new SimpleSchema({
 });
 
 Recipes.attachSchema(RecipeSchema);
-
-
-Meteor.methods({
-	toggleMenuItem: function(id, currentState){
-		Recipes.update(id, {
-			$set: {
-				inMenu: !currentState
-			}
-		});
-	},
-	deleteRecipe: function(id){
-		Recipes.remove(id);
-	}
-});
-
-
-Recipes.allow({
-	insert: function(userId, doc){
-		return !!userId;
-	},
-	update:  function(userId, doc){
-		return !!userId;
-	}
-});

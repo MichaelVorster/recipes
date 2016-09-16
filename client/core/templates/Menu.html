@@ -1,6 +1,6 @@
 <template name="Menu">
-	<button><a href="/recipe-book" style="color:white"> Add recipes </a></button>
-	<button class="suggest-recipe">Suggest recipes</button>
+	<button  class="new-recipe"><a href="/recipe-book" style="color:white">Add recipes</a></button>
+	<button  class="new-recipe"><a href="/suggested-recipes" style="color:white">Suggest recipes</a></button>
 		{{#each recipes}}
 			{{> MenuItem}}
 		{{/each}}

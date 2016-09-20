@@ -42,3 +42,4 @@ universe:modules
 practicalmeteor:mocha
 xolvio:cleaner
 dburles:factory
+session
